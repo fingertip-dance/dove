@@ -1,0 +1,41 @@
+{% extends "blog/base.html" %}
+{% load static from staticfiles%}
+
+{% block meta %}
+    <meta name="description" content="教程 分享 交流 学习">
+    <meta name="keywords" content="教程 分享 交流 学习">
+{% endblock meta %}
+
+{% block otherstatic %}
+    <!--自定义样式-->
+    <link href="{% static '/blog/css/base.css' %}" rel="stylesheet">
+    <link href={% static '/blog/css/detail.css' %} rel="stylesheet">
+    <link href={% static '/blog/css/pygments.css' %} rel="stylesheet">
+{% endblock otherstatic %}
+
+{% block body %}
+    <div class="col-lg-3">
+        <div class="article-toc d-none d-lg-block f-16">
+                     &emsp;<span style="">目录导航</span><br/>
+             {{ article.toc|safe }}
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="card rounded-0 border-0" id="article">
+            <div class="card-body px-2 px-md-3 pb-0">
+                <h1 class="card-title text-center font-weight-bold text-info">{{ article.title }}</h1>
+                <hr>
+                <div class="text-center f-13">
+                    <span class="mx-2" data-toggle="tooltip" data-placement="bottom" title="更新时间：{{ article.update_date|date:'Y年m月d日' }}">{{article.create_date|date:'Y年m月d日'}}</span>
+                </div>
+                <div class="article-body mt-4 f-17" style="line-height:1.8">
+                     {{ article.body|safe }}
+                </div>
+                <div class="tag-cloud my-4">
+                    欢迎各位评价
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+

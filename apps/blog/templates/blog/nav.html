@@ -1,0 +1,32 @@
+{% load static from staticfiles%}
+    <nav class="navbar navbar-expand-md bg-white fixed-top blog-navbar py-md-0">
+            <a class="navbar-brand d-md-none d-lg-block" href="{% url 'blog:index' %}">
+                    <img src="{% static "blog/img/logo.png" %}" width="150px" height="50px" alt="#">
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                {% for category in categorys %}
+                <li class="nav-item mr-2">
+                    <a class="nav-link py-md-3 {% if cur_category == category.id %} active {% endif %}" href="{% url 'blog:list' category.id 1 %}" target="_self">
+                        <i class="mr-1"></i>{{category.name}}</a>
+                </li>
+                {% endfor %}
+
+            </ul>
+            <!--搜索框-->
+            <form class="nav-item navbar-form mr-2 py-md-2 ml-auto" role="search" method="get" id="searchform" action="/search">
+                <div class="input-group">
+                    <input type="search" name="q" class="form-control rounded-30 f-10" placeholder="教程名称" required=True>
+                    <div class="input-group-btn">
+                        <button class="btn btn-dark rounded-10" type="submit">全站搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </nav>

@@ -1,0 +1,73 @@
+{% load static from staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<!--头部开始-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dove</title>
+    <link rel="shortcut icon" href="{% static '/blog/img/fav.png' %}" type="image/x-icon" />
+    {% block meta %}
+        <meta name="description" content="教程 分享 交流 学习">
+        <meta name="keywords" content="教程 分享 交流 学习">
+    {% endblock meta %}
+    <!--bootstrap 样式-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+          crossorigin="anonymous">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--图标 awesome-->
+    <script src="http://cdn.bootcss.com/headroom/0.5.0/headroom.min.js"></script>
+    {% block otherstatic %} {% endblock otherstatic %}
+</head>
+<!--头部结束-->
+<body>
+<!--导航开始-->
+{% include 'blog/nav.html' %}
+<!--导航结束-->
+<!--回到顶部按钮开始-->
+<div class="text-center" id="to-top">
+    <i class="fa fa-sort-up " id="btn-top" title="回到顶部"></i>
+</div>
+<!--回到顶部按钮结束-->
+<!--主要内容块开始-->
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <!--主题内容开始-->
+            {% block body %}{% endblock body %}
+            <!--主题内容开始-->
+        </div>
+    </div>
+</main>
+<!--主要内容块结束-->
+<!--底部开始-->
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<script>
+    //向下滑动鼠标 隐藏导航栏
+    $(function () { var myElement = document.querySelector(".blog-navbar"); var headroom = new Headroom(myElement); headroom.init() });
+</script>
+<script src="{% static "/blog/js/base.js" %}"></script>
+<footer class="container-fluid mt-4" >
+    <div class="card-body text-center px-0 f-16">
+        <p class="card-text mb-1">
+
+        </p>
+    </div>
+</footer>
+<!--网站footer-->
+<footer class="container-fluid mt-4" style="position: fixed;bottom: 0px">
+    <div class="card-body text-center px-0 f-16">
+
+            <span style="font-size: 12px">Copyright&nbsp;&copy;&nbsp;2018&nbsp;本站仅供学习交流.</span><br/>
+            <span style="font-size: 12px">本站说明：Dove译为鸽子的含义,古代有飞鸽传书之意，笔者希望通过本站给所有混迹在IT江湖的大侠能传递一些信息,联系笔者QQ31716601</span>
+
+    </div>
+</footer>
+<!--底部结束-->
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% extends "blog/base.html" %}
+{% load static from staticfiles%}
+
+{% block meta %}
+    <meta name="description" content="教程 分享 交流 学习">
+    <meta name="keywords" content="教程 分享 交流 学习">
+{% endblock meta %}
+
+{% block otherstatic %}
+    <!--自定义样式-->
+    <link href="{% static '/blog/css/base.css' %}" rel="stylesheet">
+{% endblock otherstatic %}
+
+{% block body %}
+    <div class="col-lg-12">
+        <!--标签开始-->
+        <div class="card border-0 rounded-0 px-3 mb-2 mb-md-3" id="tag-card">
+            <div class="card-header bg-white px-0">
+                <strong>
+                    <i class="fa fa-book mr-2 f-17"></i>最新教程</strong>
+            </div>
+            <div class="card-body px-0 py-3">
+                <div class="tag-cloud">
+                    {% for tag in tags %}
+                        {% if forloop.counter < 4 %}
+                            <a href="{% url 'blog:tagsearch' tag.id 1 %}"  class="tags f-16" id="tag-{{ forloop.counter }}">
+                                <span style="background:url({% static '/blog/img/5-120601154100-50.gif' %}) no-repeat;padding-top: 8px;">{{ tag.name }}</span>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'blog:tagsearch' tag.id 1 %}" class="tags f-16" id="tag-{{ forloop.counter }}">{{ tag.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!--标签结束-->
+        <!--标签开始-->
+        <div class="card border-0 rounded-0 px-3 mb-2 mb-md-3" id="tag-card">
+            <div class="card-header bg-white px-0">
+                <strong>
+                    <i class="fa fa-external-link mr-2 f-17"></i>官网地址</strong>
+            </div>
+            <div class="card-body px-0 py-3">
+                <div class="tag-cloud">
+                    <a href="https://www.oschina.net/" class="tags f-16" id="tag-1" target="_blank">开源中国</a>
+                    <a href="https://www.csdn.net/" class="tags f-16" id="tag-2" target="_blank">CSDN</a>
+                    <a href="http://ifeve.com/" class="tags f-16" id="tag-5" target="_blank">并发编程网</a>
+                    <a href="http://www.qlcoder.com/discuss/topic" class="tags f-16" id="tag-2" target="_blank">千里码</a>
+                    <a href="https://juejin.im/" class="tags f-16" id="tag-3" target="_blank">掘金</a>
+                    <a href="http://www.infoq.com/cn/" class="tags f-16" id="tag-10" target="_blank">InfoQ</a>
+                    <a href="http://www.woshipm.com/" class="tags f-16" id="tag-9" target="_blank">人人都是产品经理</a>
+                    <a href="http://code.ciaoca.com/" class="tags f-16" id="tag-8" target="_blank">前端开发仓库</a>
+                    <a href="https://www.huxiu.com/" class="tags f-16" id="tag-7" target="_blank">虎嗅</a>
+                    <a href="http://www.lieyunwang.com/" class="tags f-16" id="tag-1" target="_blank">猎云网</a>
+                    <a href="http://www.52im.net/" class="tags f-16" id="tag-6" target="_blank">即时通讯网</a>
+                    <a href="https://www.tuicool.com/" class="tags f-16" id="tag-3" target="_blank">推酷</a>
+                    <a href="http://www.codeceo.com/" class="tags f-16" id="tag-10" target="_blank">码农网</a>
+                    <a href="http://www.zuidaima.com/" class="tags f-16" id="tag-7" target="_blank">最代码</a>
+                    <a href="https://www.cnblogs.com/" class="tags f-16" id="tag-5" target="_blank">博客园</a>
+                    <a href="https://www.jcp.org/en/home/index" class="tags f-16" id="tag-2" target="_blank">JCP</a>
+                    <a href="https://stackoverflow.com/" class="tags f-16" id="tag-11" target="_blank">stackoverflow</a>
+                    <a href="https://www.python.org/about/" class="tags f-16" id="tag-12" target="_blank">Python</a>
+                    <a href="https://pypi.org/" class="tags f-16" id="tag-12" target="_blank">PYPI</a>
+                    <a href="https://spring.io/" class="tags f-16" id="tag-9" target="_blank">Spring</a>
+                    <a href="https://cnodejs.org/" class="tags f-16" id="tag-9" target="_blank">Node.js</a>
+                    <a href="http://www.fontawesome.com.cn/" class="tags f-16" id="tag-10" target="_blank">fontawesome</a>
+                    <a href="http://v3.bootcss.com/" class="tags f-16" id="tag-10" target="_blank">Bootstrap</a>
+                    <a href="https://leetcode-cn.com/problemset/all/" class="tags f-16" id="tag-9" target="_blank">leetcode</a>
+                    <a href="https://www.vijos.org/" class="tags f-16" id="tag-9" target="_blank">vijos</a>
+                    <a href="https://www.lintcode.com/" class="tags f-16" id="tag-9" target="_blank">lintcode</a>
+                </div>
+            </div>
+        </div>
+        <!--标签结束-->
+        <!--标签开始-->
+        <div class="card border-0 rounded-0 px-3 mb-2 mb-md-3" id="tag-card">
+            <div class="card-header bg-white px-0">
+                <strong>
+                    <i class="fa fa-link mr-2 f-17"></i>工具文档</strong>
+            </div>
+            <div class="card-body px-0 py-3">
+                <div class="tag-cloud">
+                    <a href="http://www.json.cn/" class="tags f-16" id="tag-2" target="_blank">Json在线解析</a>
+                    <a href="http://tool.chinaz.com/Tools/urlencode.aspx" class="tags f-16" id="tag-2" target="_blank">站长ENCODEURL</a>
+                    <a href="http://scrapy-chs.readthedocs.io/zh_CN/latest/index.html#" class="tags f-16" id="tag-3" target="_blank">Scrapy</a>
+                    <a href="http://docs.python-requests.org/zh_CN/latest/index.html" class="tags f-16" id="tag-4" target="_blank">HttpRequests For Human</a>
+                    <a href="http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/" class="tags f-16" id="tag-5" target="_blank">beautifulsoup</a>
+                    <a href="https://docs.djangoproject.com/en/2.0/" class="tags f-16" id="tag-6" target="_blank">Django</a>
+                    <a href="http://redis.cn/" class="tags f-16" id="tag-2" target="_blank">Redis</a>
+                    <a href="http://projects.spring.io/spring-cloud/spring-cloud.html" class="tags f-16" id="tag-7" target="_blank">SpringCloud</a>
+                    <a href="https://docs.oracle.com/javase/8/docs/api/" class="tags f-16" id="tag-8" target="_blank">JDK8</a>
+                    <a href="http://www.java-cn.com/index.html" class="tags f-16" id="tag-9" target="_blank">java中文站</a>
+                    <a href="http://phantomjs.org/documentation/" class="tags f-16" id="tag-10" target="_blank">phantomjs</a>
+                    <a href="http://www.apache.org/index.html#projects-list" class="tags f-16" id="tag-11" target="_blank">Apache-Projects</a>
+                    <a href="http://docs.jinkan.org/docs/celery/index.html" class="tags f-16" id="tag-12" ttarget="_blank">Celery</a>
+                    <a href="https://www.liaoxuefeng.com/" class="tags f-16" id="tag-13" target="_blank">廖雪峰的官方网站</a>
+                </div>
+            </div>
+        </div>
+        <!--标签结束-->
+    </div>
+{% endblock body %}

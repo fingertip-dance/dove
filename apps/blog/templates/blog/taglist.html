@@ -1,0 +1,83 @@
+{% extends "blog/base.html" %}
+{% load static from staticfiles%}
+
+{% block meta %}
+    <meta name="description" content="网站描述">
+    <meta name="keywords" content="关键字">
+{% endblock meta %}
+
+{% block otherstatic %}
+    <!--自定义样式-->
+    <link href="{% static '/blog/css/base.css' %}" rel="stylesheet">
+{% endblock otherstatic %}
+
+{% block body %}
+
+    {% if articles|length > 1%}
+    <!--标签开始-->
+    <div class="col-lg-12">
+        <div class="card border-0 rounded-0 px-3 mb-2 mb-md-3" id="tag-card">
+
+            <div class="card-header bg-white px-0">
+                <strong><i class="fa fa-book mr-2 f-17"></i>请从以下教程中选择</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- 教程列表-->
+    {% for article in articles %}
+        <div class="col-lg-4">
+            <!--教程列表开始-->
+            <div class="summary-list">
+
+                <div class="media mb-1 mb-sm-2 p-2 p-lg-3">
+                    <div class="media-body">
+                        <h2 class="mt-0 font-weight-bold text-dark f-17">
+                            <a href="{% url 'blog:detail' article.category_id article.id %}" target="_self">{{ article.title }}</a>
+                        </h2>
+                        <p class="d-none d-sm-block mb-2 f-15">{{ article.summary }}</p>
+                        <div class="text-muted mb-2 f-12">
+                            <span><i class="fa fa-calendar-check-o"></i>发布日期：{{ article.update_date}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-lg-12">
+            <!--教程列表开始-->
+            <div class="summary-list">
+                <div class="media mb-1 mb-sm-2 p-2 p-lg-3">
+                    <div class="media-body">
+                        <h2 class="mt-0 font-weight-bold text-dark f-17">
+                            啥也没找到
+                        </h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+    <!--教程列表结束-->
+    <!--分页开始-->
+    {% if page_list|length > 1 %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8"></div>
+                <div class="col-lg-4">
+                    <ul class="pagination">
+                        {% for page in page_list %}
+                            <li class="page-item"><a class="page-link" href="{% url 'blog:tagsearch' tagid page %}">{{ page }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+    <!--分页开始-->
+{% endblock body %}
